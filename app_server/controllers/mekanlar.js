@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const anaSayfa= function(req, res) {
-    res.render('anaSayfa', 
+    res.render('anasayfa', 
     {
         'baslik': 'Ana sayfa',
         'sayfaBaslik':{
