@@ -23,6 +23,13 @@ const anaSayfa= function(req, res) {
                 "adres":"Centrum Garden AVM",
                 "imkanlar":["Sushi","Nigiri","Maki"],
                 "mesafe":"15 km"
+            },
+            {
+                "ad":"Miniso",
+                "puan":"5",
+                "adres":"Centrum Garden AVM",
+                "imkanlar":["Yaşam","Giyim","Kozmetik"],
+                "mesafe":"15 km"
             }
             
         ]
