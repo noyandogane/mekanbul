@@ -30,7 +30,7 @@ const anaSayfa= function(req, res) {
     });
 }
 const mekanBilgisi= function(req, res) {
-    res.render("mekanBilgisi",
+    res.render("mekanbilgisi",
      {
         "baslik": "Mekan bilgisi",
         "mekanBaslik":"Starbucks",
