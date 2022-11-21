@@ -1,6 +1,5 @@
 # mekanbul
-Girilen konum çevresindeki mekanları listele
-
+Girilen konum çevresindeki mekanları listele                                                                                                      
 https://mekanbul5.noyandogane.repl.co/api/mekanlar?enlem=37.7&boylam=35.4
 ![image](https://user-images.githubusercontent.com/66711531/203172644-a3ea2811-0cad-4714-8831-3eaa474532b8.png)
 
