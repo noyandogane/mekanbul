@@ -1,17 +1,18 @@
 # Mekanbul REST API Adresleri
 Girilen konum çevresindeki mekanları listele                                                                                                      
-https://mekanbul5.noyandogane.repl.co/api/mekanlar?enlem=37.7&boylam=35.4
-![image](https://user-images.githubusercontent.com/66711531/203172644-a3ea2811-0cad-4714-8831-3eaa474532b8.png)
+https://mekanbul5.herokuapp.com/api/mekanlar?enlem=37.7&boylam=35.4
+![image](https://user-images.githubusercontent.com/66711531/203412158-8c259b9d-e33c-4e40-939a-123a85521e3c.png)
+
 
 
 Mekanın ID'si ile mekan bilgilerini getir
-https://mekanbul5.noyandogane.repl.co/api/mekanlar/637bec5a80cc643b151d05ac
-![image](https://user-images.githubusercontent.com/66711531/203172708-3580bde5-5f67-490c-a0e7-9c8ed9ef31d5.png)
+https://mekanbul5.herokuapp.com/api/mekanlar/637bec5a80cc643b151d05ac
+![image](https://user-images.githubusercontent.com/66711531/203412237-1d276df3-b4d1-415a-800d-0441a28822c2.png)
 
 
 Bir mekana ait belirli bir yorumu getir
-https://mekanbul5.noyandogane.repl.co/api/mekanlar/637bec5a80cc643b151d05ac/yorumlar/637bec8c393133d0488ca478
-![image](https://user-images.githubusercontent.com/66711531/203172768-2d98b200-c2cc-4c57-a35d-2ef4c3c8fe55.png)
+https://mekanbul5.herokuapp.com/api/mekanlar/637bec5a80cc643b151d05ac/yorumlar/637bec8c393133d0488ca478
+![image](https://user-images.githubusercontent.com/66711531/203412309-b08bcfed-6357-4b9e-ad20-811917fcf923.png)
 
 
 
