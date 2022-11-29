@@ -1,10 +1,10 @@
 const expect = require("chai").expect;
-var adres = "https://mekanbul5.herokuapp.com/";
+var adres = "https://mekanbul5.herokuapp.com";
 const request = require("supertest").agent(adres);
 describe("POST /api/mekanlar", function () {
   it("Yeni mekan ekle:", async function () {
     const response = await request.post("/api/mekanlar").send({
-      ad: "Starbucks",
+      ad: "Gloria Jeans",
       adres: "Centrum Garden",
       puan: 5,
       imkanlar: "çay,kahve,pasta",
@@ -92,7 +92,7 @@ describe("PUT /api/mekanlar/:mekanid/yorumlar/:yorumid", function () {
         `/api/mekanlar/${process.env.mekanid}/yorumlar/${process.env.yorumid}`
       )
       .send({
-        yorumYapan: "Sinan",
+        yorumYapan: "Noyan",
         puan: 4,
         yorumMetni: "Kahveler harikaaaa",
       });
