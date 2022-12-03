@@ -3,7 +3,7 @@ use(database);
 db.mekanlar.insertOne(
 {
   "_id": ObjectId(),
-  "ad": "Sinema",
+  "ad": "Popeyes",
   "adres": "IYAS",
   "puan": 5,
   "imkanlar": [
