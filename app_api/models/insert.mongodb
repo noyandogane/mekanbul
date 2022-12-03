@@ -3,29 +3,29 @@ use(database);
 db.mekanlar.insertOne(
 {
   "_id": ObjectId(),
-  "ad": "Popeyes",
-  "adres": "IYAS",
+  "ad": "Alina Sushi Asian Kitchen",
+  "adres": "Sanayi Mahallesi, Atatürk Bulvarı Centrum Garden AVM",
   "puan": 5,
   "imkanlar": [
-    "çay",
-    "kahve",
-    "pasta"
+    "Japon Mutfağı",
+    "Sushi",
+    "Sashimi"
   ],
   "koordinat": [
-    37.83226584629666,
-    30.524732239878013
+    37.78156619411663, 
+    30.564715181058393
   ],
   "saatler": [
     {
       "gunler": "Pazartesi-Cuma",
-      "acilis": "9:00",
-      "kapanis": "23:00",
+      "acilis": "12:00",
+      "kapanis": "22:00",
       "kapali": false
     },
     {
       "gunler": "Cumartesi-Pazar",
-      "acilis": "11:00",
-      "kapanis": "17:00",
+      "acilis": "10:00",
+      "kapanis": "22:00",
       "kapali": false
     }
   ]

@@ -1,12 +1,12 @@
 const database = 'mekanbul';
 use(database);
-db.mekanlar.updateOne({"ad":"Starbucks"},
+db.mekanlar.updateOne({_id: ObjectId("638b4f03cf40785435bc71fb")},
   {$push: {"yorumlar": 
     {
       "_id": ObjectId(),
       "yorumYapan": "Noyan",
       "puan": 5,
-      "yorumMetni": "Kahveler güzel, fiyatları uygun.",
+      "yorumMetni": "Geçenlerde bu suşi restoranını ziyaret ettim ve yemeklerin kalitesinden çok etkilendim. Suşi ruloları taze ve lezzetliydi ve sashimi ağzınızda eriyen lezzetliydi. Hizmet de mükemmeldi. Personel cana yakın ve özenli ve ihtiyacımız olan her şeye sahip olduğumuzdan emin oldular. Genel olarak, rahat ve davetkar bir atmosferde harika suşi arayan herkese bu restoranı şiddetle tavsiye ederim.",
       "tarih": new Date()
     }
   }
