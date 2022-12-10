@@ -8,12 +8,12 @@ https://mekanbul.noyandogane.repl.co/api/mekanlar?enlem=37.7&boylam=35.4
 
 
 Mekanın ID'si ile mekan bilgilerini getir
-https://mekanbul.noyandogane.repl.co//api/mekanlar/637bec5a80cc643b151d05ac
+https://mekanbul.noyandogane.repl.co/api/mekanlar/638b4f03cf40785435bc71fb
 ![image](https://user-images.githubusercontent.com/66711531/203412237-1d276df3-b4d1-415a-800d-0441a28822c2.png)
 
 
 Bir mekana ait belirli bir yorumu getir
-https://mekanbul.noyandogane.repl.co//api/mekanlar/637bec5a80cc643b151d05ac/yorumlar/637bec8c393133d0488ca478
+https://mekanbul.noyandogane.repl.co/api/mekanlar/638b4f03cf40785435bc71fb/yorumlar/638b50a15e54866e23dda8c7
 ![image](https://user-images.githubusercontent.com/66711531/203412309-b08bcfed-6357-4b9e-ad20-811917fcf923.png)
 
 
