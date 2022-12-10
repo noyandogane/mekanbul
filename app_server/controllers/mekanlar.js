@@ -87,7 +87,7 @@ const mekanBilgisi = function (req, res, next) {
   axios.get(apiSecenekleri.sunucu + apiSecenekleri.apiYolu + req.params.mekanid)
     .then(function (response) {
       req.session.mekanAdi=response.data.ad;
-      detaySayfasiOlustur(res, response.data)
+      detaySayfasiOlustur(res, response.data);
     })
     .catch(function (hata) {
       hataGoster(res, hata)
@@ -95,7 +95,6 @@ const mekanBilgisi = function (req, res, next) {
 }
 
 const yorumEkle=function(req,res,next){
-  res.render('yorumekle',{title: 'Yorum Ekle'});
   var mekanAdi=req.session.mekanAdi;
   var mekanid=req.params.mekanid;
   if(!mekanAdi){
