@@ -3,13 +3,13 @@ use(database);
 db.mekanlar.insertOne(
 {
   "_id": ObjectId(),
-  "ad": "Alina Sushi Asian Kitchen",
-  "adres": "Sanayi Mahallesi, Atatürk Bulvarı Centrum Garden AVM",
+  "ad": "Starbucks",
+  "adres": "Sanayi, Köy Hizmetleri Kavşağı Centrum Garden, Atatürk Blv. Sanayi Merkez",
   "puan": 5,
   "imkanlar": [
-    "Japon Mutfağı",
-    "Sushi",
-    "Sashimi"
+    "Kahve",
+    "Kek",
+    "Wifi"
   ],
   "koordinat": [
     37.78156619411663, 

@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var session=require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -12,7 +13,14 @@ var apiRouter = require('./app_api/routes/index');
 var app = express();
 
 
-// view engine setup
+
+app.use(session({
+  secret:'gizli',
+  cookie:{maxAge:1000*60*60*24},
+  resave:true,
+  saveUninitialized:true
+}));
+
 app.set('views', path.join(__dirname,'app_server', 'views'));
 app.set('view engine', 'pug');
 

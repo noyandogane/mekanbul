@@ -5,6 +5,8 @@ block content
   .row.page-header
     .col-lg-12
       h1 #{mekanBaslik}
+      //a back button pulled right
+      a.btn.btn-default.pull-right(href='/mekanlar') Geri
   .row 
     .col-xs-12.col-md-12
       .row
@@ -44,7 +46,8 @@ block content
     .col-xs-12 
       .panel.panel-primary 
         .panel-heading
-          a.btn.btn-default.pull-right(href='/mekan/yorum/yeni') Yorum Ekle 
+         -var mekanid=mekanDetay._id 
+          a.btn.btn-default.pull-right(href='/mekan/'+mekanid+'/yorum/yeni') Yorum Ekle
           h2.panel-title Müşteri Yorumları
         .panel-body.review-container
           each yorum in mekanDetay.yorumlar  
