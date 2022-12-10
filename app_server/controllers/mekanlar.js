@@ -2,6 +2,7 @@ const axios = require("axios")
 
 var apiSecenekleri = {
   sunucu: "http://mekanbul.noyandogane.repl.co",
+  //sunucu: "http://localhost:3000",
   apiYolu: "/api/mekanlar/"
 }
 
@@ -107,6 +108,7 @@ const yorumumuEkle=function(req,res,next){
 var gonderilenYorum,mekanid;
 mekanid=req.params.mekanid;
 if(!req.body.adsoyad || !req.body.yorum){
+  console.log(req.body.adsoyad+" "+req.body.yorum);
   res.redirect("/mekan/"+mekanid+"/yorum/yeni?hata=evet");
 }
 else{
