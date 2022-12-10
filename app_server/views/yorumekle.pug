@@ -1,5 +1,4 @@
 extends layout
-
 block content
   .row.page-header
     .col-lg-12
@@ -7,8 +6,6 @@ block content
   .row
     .col-xs-12.col-md-6
       form.form-horizontal(action="", method="post", role="form", id="yorumEkle")
-        -if(hata=="evet")
-          .alert.alert-danger(role="alert") Tüm Alanlar Gereklidir!
         .form-group
           label.col-xs-10.col-sm-2.control-label(for="name") İsim
           .col-xs-12.col-sm-10
