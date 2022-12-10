@@ -117,8 +117,10 @@ else{
       puan:req.body.puan
   }
   axios.post(apiSecenekleri.sunucu+apiSecenekleri.apiYolu+mekanid+"/yorumlar",gonderilenYorum).then(function(){
-      res.redirect("/mekan/"+mekanid);
-  });
+    res.redirect("/mekan/"+mekanid);
+}).catch(function(hata){
+    hataGoster(req, res, hata);
+});
 }
 };
 
