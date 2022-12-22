@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var Mekan = mongoose.model("mekan");
+var Kullanici = mongoose.model("kullanici");
 const cevapOlustur = function (res, status, content) {
     res.status(status).json(content);
 };
@@ -30,13 +31,12 @@ var ortalamaPuanGuncelle = function (mekanid) {
             }
         });
 };
-var yorumOlustur = function (req, res, gelenMekan) {
+var yorumOlustur = function (req, res, gelenMekan,kullaniciAdi) {
     if (!gelenMekan) {
-        cevapOlustur(res, 404, { mesaj: "mekanid bulunamadı!" });
-    }
-    else {
+        cevapOlustur(res, 404, { mesaj: "mekanid bulunamadı",});
+    } else {
         gelenMekan.yorumlar.push({
-            yorumYapan: req.body.yorumYapan,
+            yorumYapan: kullaniciAdi,
             puan: req.body.puan,
             yorumMetni: req.body.yorumMetni,
             tarih: Date.now(),
@@ -45,8 +45,7 @@ var yorumOlustur = function (req, res, gelenMekan) {
             var yorum;
             if (hata) {
                 cevapOlustur(res, 400, hata);
-            }
-            else {
+            } else {
                 ortalamaPuanGuncelle(mekan._id);
                 yorum = mekan.yorumlar[mekan.yorumlar.length - 1];
                 cevapOlustur(res, 201, yorum);
@@ -54,24 +53,74 @@ var yorumOlustur = function (req, res, gelenMekan) {
         });
     }
 };
-const yorumEkle = (req, res) => {
-    const mekanid = req.params.mekanid;
-    if (mekanid) {
-        Mekan
-            .findById(mekanid)
-            .select("yorumlar")
-            .exec((hata, gelenMekan) => {
-                if (hata) {
-                    res.status(400).json(hata);
+
+const kullaniciGetir = (req, res, callback) => {
+    //log
+    console.log("kullaniciGetir");
+
+    if (req.auth && req.auth.eposta) {
+        //log
+        
+        Kullanici
+            .findOne({ eposta: req.auth.eposta })
+            .exec((hata, kullanici) => {
+                //log
+                
+                if (!kullanici) {
+                    //log
+                    
+                    return res
+                        .status(404)
+                        .json({ "hata": "Kullanıcı bulunamadı." });
                 }
-                else {
-                    yorumOlustur(req, res, gelenMekan);
+                else if (hata) {
+                    //log
+                    
+                    return res
+                        .status(404)
+                        .json(hata);
                 }
+                callback(req, res, kullanici.adsoyad);
+                //log
+                
             });
     }
     else {
-        res.status(404).json({ mesaj: "Mekan bulunamadı." });
+        return res
+            .status(404)
+            .json({ "hata": "Kullanıcı bulunamadı." });
     }
+};
+const yorumEkle = (req, res) => {
+    //log
+    console.log("yorumEkle");
+
+    kullaniciGetir(req, res,
+        (req, res, kullaniciAdi) => {
+            const mekanid = req.params.mekanid;
+            if (mekanid) {
+                Mekan
+                    .findById(mekanid)
+                    .select("yorumlar")
+                    .exec((hata, mekan) =>{
+                        if (hata) {
+                            res
+                                .status(400)
+                                .json(hata);
+                        }
+                        else {
+                            yorumOlustur(req, res,mekan, kullaniciAdi);
+                        }
+                    });
+            }
+            else {
+                res
+                    .status(404)
+                    .json({ "hata": "Bulunamadı. " });
+            }
+        }
+    );
+    
 };
 const yorumGetir = function (req, res) {
     if (req.params && req.params.mekanid && req.params.yorumid) {
@@ -156,6 +205,8 @@ const yorumSil = function (req, res) {
             }
         });
 };
+
+
 const yorumGuncelle = function (req, res) {
     if (!req.params.mekanid || !req.params.yorumid) {
         cevapOlustur(res, 404, { mesaj: "Bulunamadı. mekanid ve yorumid zorunlu." });
@@ -199,9 +250,13 @@ const yorumGuncelle = function (req, res) {
         });
 };
 
+
+
+
+
 module.exports = {
     yorumEkle,
     yorumGetir,
     yorumSil,
-    yorumGuncelle
+    yorumGuncelle,
 }
