@@ -6,8 +6,10 @@ const cevapOlustur = function (res, status, content) {
 };
 
 var sonPuanHesapla = function (gelenMekan) {
+
     var i, yorumSayisi, ortalamaPuan, toplamPuan;
     if (gelenMekan.yorumlar && gelenMekan.yorumlar.length > 0) {
+
         yorumSayisi = gelenMekan.yorumlar.length;
         toplamPuan = 0;
         for (i = 0; i < yorumSayisi; i++) {
@@ -33,19 +35,23 @@ var ortalamaPuanGuncelle = function (mekanid) {
 };
 var yorumOlustur = function (req, res, gelenMekan,kullaniciAdi) {
     if (!gelenMekan) {
+
         cevapOlustur(res, 404, { mesaj: "mekanid bulunamadı",});
     } else {
         gelenMekan.yorumlar.push({
+
             yorumYapan: kullaniciAdi,
             puan: req.body.puan,
             yorumMetni: req.body.yorumMetni,
             tarih: Date.now(),
         });
         gelenMekan.save(function (hata, mekan) {
+
             var yorum;
             if (hata) {
                 cevapOlustur(res, 400, hata);
             } else {
+
                 ortalamaPuanGuncelle(mekan._id);
                 yorum = mekan.yorumlar[mekan.yorumlar.length - 1];
                 cevapOlustur(res, 201, yorum);
@@ -54,35 +60,35 @@ var yorumOlustur = function (req, res, gelenMekan,kullaniciAdi) {
     }
 };
 
-const kullaniciGetir = (req, res, callback) => {
+const kullaniciGetir = (req, res, callback) => { //callback fonksiyonu
     //log
     console.log("kullaniciGetir");
 
-    if (req.auth && req.auth.eposta) {
+    if (req.auth && req.auth.eposta) { //auth bilgisi varsa
         //log
-        
-        Kullanici
+        console.log("kullaniciGetir - req.auth.eposta: " + req.auth.eposta);
+        Kullanici //kullanıcıyı bul
             .findOne({ eposta: req.auth.eposta })
             .exec((hata, kullanici) => {
                 //log
-                
-                if (!kullanici) {
+                console.log("kullaniciGetir - kullanici: " + kullanici);
+                if (!kullanici) { //kullanıcı bulunamadıysa
                     //log
-                    
+                    console.log("kullaniciGetir - kullanici bulunamadı");
                     return res
                         .status(404)
                         .json({ "hata": "Kullanıcı bulunamadı." });
                 }
-                else if (hata) {
+                else if (hata) { //hata varsa
                     //log
-                    
+                    console.log("kullaniciGetir - hata: " + hata);
                     return res
                         .status(404)
                         .json(hata);
                 }
                 callback(req, res, kullanici.adsoyad);
                 //log
-                
+                console.log("kullaniciGetir - callback");
             });
     }
     else {
@@ -91,15 +97,15 @@ const kullaniciGetir = (req, res, callback) => {
             .json({ "hata": "Kullanıcı bulunamadı." });
     }
 };
-const yorumEkle = (req, res) => {
+const yorumEkle = (req, res) => { //yorum ekleme
     //log
     console.log("yorumEkle");
 
-    kullaniciGetir(req, res,
+    kullaniciGetir(req, res, //kullanıcıyı bul
         (req, res, kullaniciAdi) => {
             const mekanid = req.params.mekanid;
             if (mekanid) {
-                Mekan
+                Mekan //mekanı bul
                     .findById(mekanid)
                     .select("yorumlar")
                     .exec((hata, mekan) =>{
@@ -123,7 +129,7 @@ const yorumEkle = (req, res) => {
     
 };
 const yorumGetir = function (req, res) {
-    if (req.params && req.params.mekanid && req.params.yorumid) {
+    if (req.params && req.params.mekanid && req.params.yorumid) { //mekanid ve yorumid varsa
         Mekan.findById(req.params.mekanid)
             .select("ad yorumlar")
             .exec(function (hata, mekan) {
